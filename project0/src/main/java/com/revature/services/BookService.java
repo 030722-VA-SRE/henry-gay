@@ -1,5 +1,6 @@
 package com.revature.services;
 
+import java.util.List;
 import com.revature.daos.BookDao;
 import com.revature.daos.BookPostgres;
 import com.revature.exceptions.BookNotFoundException;
@@ -11,6 +12,10 @@ public class BookService {
 	
 	public BookService() {
 		bDao = new BookPostgres();
+	}
+	
+	public List<Book> getAllBooks(){
+		return bDao.getAllBooks();
 	}
 	
 	public Book getById(int id) throws BookNotFoundException {

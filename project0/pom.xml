@@ -32,5 +32,22 @@
 			<artifactId>jackson-databind</artifactId>
 			<version>2.13.2</version>
 		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.datatype</groupId>
+			<artifactId>jackson-datatype-jsr310</artifactId>
+			<version>2.13.2</version>
+		</dependency>
 	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>3.0.0</version>
+				<configuration>
+					<mainClass>com.revature.Driver</mainClass>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>

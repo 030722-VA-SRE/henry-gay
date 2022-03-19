@@ -4,10 +4,39 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.revature.models.Book;
 import com.revature.util.ConnectionUtil;
 
 public class BookPostgres implements BookDao {
+	
+	@Override
+	public List<Book> getAllBooks() {
+		String sql = "select * from books;";
+		List<Book> books = new ArrayList<>();
+
+		try (Connection c = ConnectionUtil.getConnection()) {
+			Statement s = c.createStatement();
+			ResultSet rs = s.executeQuery(sql);
+
+			while (rs.next()) {
+				Book newBook = new Book();
+				newBook.setId(rs.getInt("id"));
+				newBook.setIsbn(rs.getString("isbn"));
+				newBook.setTitle(rs.getString("title"));
+				newBook.setAuthor(rs.getString("author"));
+				newBook.setYearPublished(rs.getInt("year_published"));
+
+				books.add(newBook);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return books;
+	}
 
 	@Override
 	public Book getBookById(int id) {
