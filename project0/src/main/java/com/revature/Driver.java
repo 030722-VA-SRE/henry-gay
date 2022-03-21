@@ -1,10 +1,9 @@
 package com.revature;
 
-import static io.javalin.apibuilder.ApiBuilder.delete;
 import static io.javalin.apibuilder.ApiBuilder.get;
 import static io.javalin.apibuilder.ApiBuilder.path;
 import static io.javalin.apibuilder.ApiBuilder.post;
-import static io.javalin.apibuilder.ApiBuilder.put;
+//import static io.javalin.apibuilder.ApiBuilder.put;
 import com.revature.controllers.BookController;
 import io.javalin.Javalin;
 
@@ -25,7 +24,7 @@ public class Driver {
 				
 				get(BookController::getAllBooks);
 				
-//				post(BookController::addBooks);
+				post(BookController::addBooks);
 				
 				path("{id}", () -> {
 					
@@ -33,7 +32,6 @@ public class Driver {
 					
 //					put(BookController::updateBook);
 					
-//					delete(BookController::deleteBook);
 				});
 				
 			});

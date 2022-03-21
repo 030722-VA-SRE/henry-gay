@@ -18,6 +18,18 @@ public class BookService {
 		return bDao.getAllBooks();
 	}
 	
+	public List<Book> getBooksByTitle(String title){
+		return bDao.getBooksByTitle(title);
+	}
+
+	public List<Book> getBooksByAuthor(String author){
+		return bDao.getBooksByAuthor(author);
+	}
+	
+	public List<Book> getBooksByTitleAndAuthor(String title, String author){
+		return bDao.getBooksByTitleAndAuthor(title, author);
+	}
+	
 	public Book getById(int id) throws BookNotFoundException {
 		Book book = bDao.getBookById(id);
 		
@@ -26,5 +38,13 @@ public class BookService {
 		}
 		
 		return book;
+	}
+	
+	public boolean addBook(Book book) {
+		int generatedId = bDao.addBook(book);
+		if(generatedId != -1) {
+			return true;
+		}
+		return false;
 	}
 }
