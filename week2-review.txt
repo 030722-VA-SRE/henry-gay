@@ -1,0 +1,217 @@
+# SQL
+
+### Relations
+
+* Explain what SQL is. What are some SQL databases?
+
+* How is data structured in a SQL database?
+
+* What is an ERD? How is it useful?
+
+* What are the different multiplicity relationships? How would you create these relations?
+
+* What kind of relationship would exist between Students and Classes? Students and Textbooks?
+
+* Explain the concept of referential integrity
+
+* What is a cascade delete?
+    
+* List the integrity constraints
+    
+* Define the word "schema"
+    
+* What is a candidate key? What about a surrogate key?
+
+
+### Sublanguages & Queries
+    
+* What are the 5 sublanguages of SQL? List some commands for each
+    
+* What is the difference between DELETE, DROP, and TRUNCATE commands?
+    
+* What are some SQL clauses you can use with SELECT statements?
+   
+
+* What is the difference between joins and set operators?
+
+* What are the types of joins? Explain the differences.
+ 
+
+* Explain the difference between UNION, UNION ALL, and INTERSECT
+
+### Transactions
+
+* What are the properties a transaction must follow?
+ 
+
+* Explain the different isolation levels. What read phenomena do each prevent?
+
+### Practicals
+
+Given the following table 'employees'...
+
+| id | firstName | lastName | salary | dept |
+| --- | -------- | -------- | ------ | ---- |
+| 1  | Michael   | Scott    | 65     | Sales|
+| 2  | Dwight    | Schrute  | 75     | Sales|
+| 3  | Toby      | Flenderson| 80    | HR  |
+| 4  | Jim       | Halpert  | 90     | Sales|
+| 5  | Oscar     | Martinez | 90     | Accounting |
+| 6  | Angela    | Martin   | 75     | Accounting |
+| 7  | Kevin     | Malone   | 70     | Accounting |
+| 8  | Holly     | Flax     | 60     | HR |
+| 9  | Creed     | Branton  | 70     | Quality Assurance |
+
+* Write a query to find all data in the table
+	select * from employees;
+
+* Write a query to find employees with a salary over 75
+	select * from employees where salary > 70;
+
+* Write a query to find employees whose first name contains an 'e' or whose last name begins with 'S'\
+	select * from employees where firstName like '%e%' and lastName like 'S%';
+
+* Write a query to find the first name of all employees who do not work in accounting
+	select firstName from employees where dept not like 'Accounting';
+
+* Write a query to find the average salary of all employees whose last names begin with 'M'
+	select avg(salary) from employees where lastName like 'M%';
+
+* Write a query to find the highest paid salesperson
+	select * from employees where salary = (select max(salary) from employees) and dept = 'Sales';
+
+* Write a query to combine the resultsets of any two previous queries
+	select * from employees where salary > 70
+	union
+	select * from employees where firstName like '%e%' and lastName like 'S%';
+
+* Remove all members of accounting from the database
+	delete from employees where dept = 'Accounting';
+
+
+* Given removing the dept column from the employees table and creating a table 'department' and linking the two via a foreign key relationship
+
+| dept_id | name |
+| ------- | ---  |
+| 1       | Sales |
+| 2       | HR   |
+| 3       | Accounting |
+| 4       | Customer Service |
+
+* Write a query to find the salary of the lowest paid salesperson (HINT: use a join)
+	select MIN(salary) from employees
+	join department on employees.dept_id = department.dept_id
+	where name = 'Sales';
+
+* Write a query to find the average salary of each department
+	select name, AVG(salary) from employees
+	join department on employees.dept_id = department.dept_id
+	group by dept_id;
+
+* Write a query to find all possible combinations of employees and departments. How many records do you expect?
+	select * from employees
+	cross join department;
+	I expect to see 36 records.
+
+* Change the name of department 4 to 'Quality Assurance'
+	update department 
+	set name = 'Quality Assurance' 
+	where dept_id = 4;
+
+* Remove both tables
+	drop table employees;
+	drop table department;
+
+# JDBC
+1.	What is JDBC?
+2.	What are the core interfaces / classes in JDBC?
+3.	What is a stored procedure and how would you call it in Java?
+4.	What is the difference between Statement and PreparedStatement?
+5.	Steps to executing an SQL query using JDBC?
+
+# AWS
+
+### Cloud / AWS Overview
+* How would you describe AWS? What is "the cloud" or "cloud computing" and why is it so popular now?
+	AWS or Amazon Web Services is a cloud service that provides computing solutions for customers. 
+	Cloud computing is the on-demand delivery of IT resources over the Internet with pay-as-you-go pricing.
+	CC has become popular due to it being more secure. If a device is ever stolen or destroyed a user's
+	data remians protected on a remote server in the cloud.
+
+* Define Infrastructure, Platform, and Software as a Service
+	Infrastructure as a Service (IaaS) is a self-service model for managing remote data center infrastructures.
+	Platform as a Service (PaaS) allows organizations to build, run and manage applications without the IT infrastructure. This makes it easier and faster to develop, test and deploy applications.
+	Software as a service (SaaS) replaces the traditional on-device software with software that is licensed on a subscription basis. It is centrally hosted in the cloud.
+	
+* What's the difference between a Region and an Availability Zone (AZ)?
+	An **AWS Region** is a geographical location with a collection of availability zones mapped to physical data centers in that region. Every region is physically isolated from and independent of every other region in terms of location, power, water supply, etc.
+ 	An availability zone is a logical data center in a region available for use by any AWS customer. Each zone in a region has redundant and separate power, networking and connectivity to reduce the likelihood of two zones failing simultaneously.
+* How are you charged for using AWS services? Does it vary by service?
+ 
+* Different ways to interact with AWS services?
+	RDS used for hosting a db on AWS
+	EC2 is a virtual machine on the cloud
+	AMI is a template that contains software configuration required to launch your instance
+	EBS is Block Storage associated with an ECS, it acts as a virtual hard drive
+	Security Groups details what traffic is allowed in and out and acts as a firewall
+
+
+
+### EC2
+
+* What are the configuration options for EC2?
+	AMI is where the user selects the template to be used for the instance
+	Instance where the user selects the type of processor
+	Security Group where the user can configure what traffic is allowed in and out
+	keypair is used for authentication in order to access the EC2
+ 
+* What are the different EC2 instance sizes/types?
+	instance types define the hardware in which the AMI is using. Some of these types include
+	t2.nano, t2.micro, t2.small, m5.large, m5.xlarge, m52xlarge, a1.medium, a1.large, and a1xlarge.
+ 
+* Once you create an EC2, how to connect to it?
+	One of the ways to connect to the EC2 is through the terminal via ssh
+	ssh -i "keypair.pem" ec2-user@[ec2-filepath]
+ 
+* What are Security Groups? When defining a rule for a security group, what 3 things do you need to specify?
+  	Security Groups act as a virtual firewall. They enable rules to filter traffic to the instance.
+	The three things needed for security groups are type of connection, protocol, and IP version.
+
+* What's the difference between scalability, elasticity, and resiliency?
+	Scalability is the ability of the system to accommodate larger loads just by adding resources either making hardware stronger (scale up) or 
+	adding additional nodes (scale out). 
+	Elasticity is the ability to fit the resources needed to cope with loads dynamically usually in relation to scale out.
+	Cloud resiliency is the process of foreseeing possible disruptions to technology service at a business.
+ 
+* Ways of paying for EC2?
+	There are five ways to pay for Amazon EC2 instances: On-Demand, Savings Plans, Reserved Instances, and Spot Instances. 
+	You can also pay for Dedicated Hosts which provide you with EC2 instance capacity on physical servers dedicated for your use.
+
+### RDS
+
+* What's an RDS?
+	Amazon Relational Database Service is a distributed relational database service by Amazon Web Services. 
+	It is a web service running "in the cloud" designed to simplify the setup, operation, and scaling of a relational database for use in applications.
+	
+* Which vendors are supported?
+	Meyer Distributing.
+	Earl Owen Company.
+	Keystone Automotive.
+	H&H Sales.
+	Tri-State Enterprises.
+	Frank Supply Co.
+
+
+# UNIX/LINUX
+
+* What are the differences between a Thread and Process and a Service?
+	A Thread is a lightweight process, Threads run in a shared memory space
+	A Process is a computer program under execution, processes run in a seperate memory space. Processes are isolated and do not 
+	interupt each other's execution.
+	A service is a program that runs in the background outside the interactive control of system users as they lack an interface.
+
+* Write a basic bash script 
+    * ie: installing java/maven/git to an ec2
+    * if you're feeling ambitious, a script that would delete a file if it exists
+
+
