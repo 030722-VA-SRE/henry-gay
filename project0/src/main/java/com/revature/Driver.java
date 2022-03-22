@@ -13,7 +13,7 @@ public class Driver {
 		
 		Javalin app = Javalin.create((config) -> {
 			config.enableCorsForAllOrigins();
-			
+			 
 			config.defaultContentType = "application/json";
 		});
 		
@@ -26,6 +26,9 @@ public class Driver {
 				
 				post(BookController::addBooks);
 				
+				/*-
+				 * Will only get book and update book if specific id is provided as an endpoint
+				 */
 				path("{id}", () -> {
 					
 					get(BookController::getBookById);

@@ -182,10 +182,10 @@ public class BookPostgres implements BookDao {
 		return generatedId;
 	}
 
+
 	@Override
 	public boolean updateBook(Book book) {
-		String sql = "update books set id = ?, isbn = ?, title = ?, author = ?, year_published = ?, where id = ?;";
-
+		String sql = "update books set isbn = ?, title = ?, author = ?, year_published = ? where id = ? returning *;";
 		try (Connection c = ConnectionUtil.getConnection()) {
 			PreparedStatement ps = c.prepareStatement(sql);
 
@@ -193,13 +193,17 @@ public class BookPostgres implements BookDao {
 			ps.setString(2, book.getTitle());
 			ps.setString(3, book.getAuthor());
 			ps.setInt(4, book.getYearPublished());
+			ps.setInt(5, book.getId());
 
 			ResultSet rs = ps.executeQuery();
-			if(rs.next())
-					return true;
+			if(rs.next()) 
+					return true; 
+					
 		} catch (SQLException e) {
 			log.error(e.fillInStackTrace());
 			e.printStackTrace();
 			}
+			return false;
 		}
 	}
+	

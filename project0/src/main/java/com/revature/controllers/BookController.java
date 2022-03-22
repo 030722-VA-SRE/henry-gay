@@ -1,13 +1,16 @@
 package com.revature.controllers;
 
-import org.eclipse.jetty.http.HttpStatus;
 import java.util.List;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.eclipse.jetty.http.HttpStatus;
+
 import com.revature.exceptions.BookNotFoundException;
 import com.revature.models.Book;
 import com.revature.services.BookService;
+
 import io.javalin.http.Context;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 /*-
  * This class handles HTTP requests related to the Book model
@@ -99,12 +102,8 @@ public class BookController {
 		 *  Retrieves new Book from the HTTP body and converts
 		 *  it into a java object of type Book
 		 */
-		Book updatedBook = ctx.bodyAsClass(Book.class);
-		
-		/*-
-		 * bs.addBook returns true if the book was successfully updated
-		 */
-		if(bs.updateBook(updatedBook)) {
+		Book updateBook = ctx.bodyAsClass(Book.class);
+		if(bs.updateBook(updateBook)) {
 		ctx.status(HttpStatus.OK_200);
 		} else {
 			ctx.status(HttpStatus.NOT_FOUND_404);
