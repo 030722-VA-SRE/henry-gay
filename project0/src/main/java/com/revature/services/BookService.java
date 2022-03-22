@@ -47,4 +47,8 @@ public class BookService {
 		}
 		return false;
 	}
+	
+	public boolean updateBook(Book book) {
+		return bDao.updateBook(book);
+	}
 }

@@ -76,8 +76,11 @@ public class BookController {
 	}
 
 	public static void addBooks(Context ctx) {
-		// Retrieves new Book from the HTTP body and converts it into a java object of
-		// type Book
+		/*-
+		 *  Retrieves new Book from the HTTP body and converts
+		 *  it into a java object of type Book
+		 */
+		 
 		Book newBook = ctx.bodyAsClass(Book.class);
 
 		/*-
@@ -86,13 +89,26 @@ public class BookController {
 		if (bs.addBook(newBook)) {
 			ctx.status(HttpStatus.CREATED_201);
 		} else {
-			ctx.status(400);
+			ctx.status(HttpStatus.NOT_FOUND_404);
 			ctx.result("Unable to create book.");
 		}
 	}
 
-//	public static void updateBook(Context ctx) {
-//		ctx.status(HttpStatus.NOT_IMPLEMENTED_501);
-//		ctx.result("Update book has not been implemented yet.");
-//	}
+	public static void updateBook(Context ctx) {
+		/*-
+		 *  Retrieves new Book from the HTTP body and converts
+		 *  it into a java object of type Book
+		 */
+		Book updatedBook = ctx.bodyAsClass(Book.class);
+		
+		/*-
+		 * bs.addBook returns true if the book was successfully updated
+		 */
+		if(bs.updateBook(updatedBook)) {
+		ctx.status(HttpStatus.OK_200);
+		} else {
+			ctx.status(HttpStatus.NOT_FOUND_404);
+		ctx.result("Unable to update book");
+		}
+	}
 }

@@ -3,7 +3,7 @@ package com.revature;
 import static io.javalin.apibuilder.ApiBuilder.get;
 import static io.javalin.apibuilder.ApiBuilder.path;
 import static io.javalin.apibuilder.ApiBuilder.post;
-//import static io.javalin.apibuilder.ApiBuilder.put;
+import static io.javalin.apibuilder.ApiBuilder.put;
 import com.revature.controllers.BookController;
 import io.javalin.Javalin;
 
@@ -30,7 +30,7 @@ public class Driver {
 					
 					get(BookController::getBookById);
 					
-//					put(BookController::updateBook);
+					put(BookController::updateBook);
 					
 				});
 				

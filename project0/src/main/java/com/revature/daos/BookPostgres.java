@@ -67,6 +67,7 @@ public class BookPostgres implements BookDao {
 		// if an item of that id is found, returns that item, otherwise returns null
 		return book;
 	}
+	
 	@Override
 	public List<Book> getBooksByTitle(String title) {
 		String sql = "select * from books where title = ?;";
@@ -181,29 +182,24 @@ public class BookPostgres implements BookDao {
 		return generatedId;
 	}
 
-//	@Override
-//	public boolean updateBook(Book book) {
-//		String sql = "update books set id = ?, isbn = ?, title = ?, author = ?, year_published = ?, where id = ?;";
-//		int rowsChanged = -1;
-//
-//		try (Connection c = ConnectionUtil.getConnection()) {
-//			PreparedStatement ps = c.prepareStatement(sql);
-//
-//			ps.setInt(1, book.getId());
-//			ps.setString(2, book.getIsbn());
-//			ps.setString(3, book.getTitle());
-//			ps.setString(4, book.getAuthor());
-//			ps.setInt(5, book.getYearPublished());
-//
-//			rowsChanged = ps.executeUpdate();
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		if (rowsChanged < 1) {
-//			return false;
-//		}
-//
-//		return true;
-//	}
-}
+	@Override
+	public boolean updateBook(Book book) {
+		String sql = "update books set id = ?, isbn = ?, title = ?, author = ?, year_published = ?, where id = ?;";
+
+		try (Connection c = ConnectionUtil.getConnection()) {
+			PreparedStatement ps = c.prepareStatement(sql);
+
+			ps.setString(1, book.getIsbn());
+			ps.setString(2, book.getTitle());
+			ps.setString(3, book.getAuthor());
+			ps.setInt(4, book.getYearPublished());
+
+			ResultSet rs = ps.executeQuery();
+			if(rs.next())
+					return true;
+		} catch (SQLException e) {
+			log.error(e.fillInStackTrace());
+			e.printStackTrace();
+			}
+		}
+	}

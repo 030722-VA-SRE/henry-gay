@@ -11,6 +11,6 @@ public interface BookDao {
 	public List<Book> getBooksByTitleAndAuthor(String title, String author);
 	public Book getBookById(int id);
 	public int addBook(Book book);
-//	public boolean updateBook(Book book);
+	public boolean updateBook(Book book);
 
 }
