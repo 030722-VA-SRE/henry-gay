@@ -9,6 +9,10 @@ import com.revature.models.Book;
 public class BookService {
 
 	private BookDao bDao;
+
+	public BookService(BookDao mockDao) {
+		super();
+	}
 	
 	public BookService() {
 		bDao = new BookPostgres();
