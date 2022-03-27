@@ -1,5 +1,6 @@
 /*-
  * https://www.tutorialspoint.com/spring_boot/spring_boot_enabling_swagger2.htm
+ * https://www.baeldung.com/swagger-2-documentation-for-spring-rest-api
  */
 package com.revature.config;
 
@@ -38,7 +39,7 @@ public class SwaggerConfig implements WebMvcConfigurer {
 	}
 
 	private ApiInfo getApiInfo() {
-		Contact contact = new Contact("test", "test.com", "test@test.com");
+		Contact contact = new Contact("Henry Gay", "https://revature.com/", "henry672@revature.net");
 		return new ApiInfoBuilder().title("EnoScioEcommerce API").description("Documentation EnoScioEcommerce api")
 				.version("1.0.0").license("Apache 2.0").licenseUrl("http://www.apache.org/licenses/LICENSE-2.0")
 				.contact(contact).build();
