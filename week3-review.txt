@@ -1,0 +1,554 @@
+﻿1. HTML
+1.        What is HTML?
+* HyperText Markup Language:
+   *  a markup language for creating web pages and applications using elements, tags and attributes
+
+
+2.        What is the HTML5 doctype declaration?
+        <!DOCTYPE html>
+* The doctype declaration is used to inform the browser about which version of HTML is being used in this particular document. 
+* Also known as Document Type Declaration (DTD) 
+
+
+3.        List some tags. What is <head> used for? <body>?
+* <div>: defines a division of the page
+* <p>: defines a paragraph
+* <head>: container for metadata placed between <html> & <body> tag
+* <body>: defines the documents body, contains all content
+* <headER>: defines a header for a document or section
+
+
+4.        What are the required tags for an HTML document?
+* <!DOCTYPE html> : doctype declaration to inform browser, does not have a closing tag
+* <html> : contains everything nested in our webpage
+* <head> : contains metadata, character encoding & references to css sheets
+* <title> 
+* </head>
+* <body> : contains all content displayed on webpage 
+* </body> 
+* </html> 
+
+
+5.        What is the tag for ordered list? unordered list? Change bullet styling?
+* Ordered List: marked by numbers(1,2,3…) or letters (A,B,C…)
+   * <ol> 
+<li> item 1 </li>
+                <li> item 2 </li>
+                </ol>
+* Un-Ordered List: marked by bullet points
+   * <ul>
+<li> item 1 </li>
+                <li> item 2 </li>
+                </ul
+
+
+
+
+
+
+
+
+* To change bullet styling: use  ‘ list-style-type ‘ property to specify the type of list marker
+* Ie: <!DOCTYPE html>
+<html>
+<head>
+<style> 
+                                      ul.a{
+ list-style-type: circle  
+ }
+                        </style>
+</head>
+<body>
+                <ul class=”a”>
+                          <li>Coffee</li>
+                          <li>Tea</li>
+                          <li>Coca Cola</li>
+</ul>
+
+
+
+
+6.        What features came with HTML5? Are HTML 5 tags different from other tags?
+* With HTML5 we have some new features such as 
+   * Audio and video tags
+   * Vector graphics: used to draw graphics of various shapes & colors 
+   * Header and footer tags 
+   * Figure and Figcaption element: to define a caption for a photo 
+   * Nav tag: defines a set of navigation links
+-  HTML5 supports more features, new tags and elements. 
+
+
+7.        Do all tags come in a pair? List a self-closing tag.
+* No, all tags do not come in pairs. 
+* Self-closing tags are for void elements and do not require a closing tag because of their element structure. 
+   * Usually contain a “/” character inside the tag <>
+
+
+8.        What’s the difference between an element and an attribute? List some global attributes.
+* Elements are used to hold general content for web page 
+* Attributes are used to describe characteristics of an element in detail
+* Global attributes: 
+   * Class: space separates classes of an element, allows for access to specific elements via class selectors 
+   * Id
+   * Hidden
+   * Title 
+
+
+9.        What is the syntax for a comment in HTML?
+* <!-- this is syntax for a comment –>
+
+
+10.        What tags would you use to create a table? A navbar? What about a form?
+* Table: 
+   * <tr>: defines table row
+   * <td>: defines table cell
+   * <th> used for table header
+* Navbar
+   * <nav>: used for navigation blocks to specify navigation links
+* Form
+   *  <form>: used to create a form for user input
+   * Can contain text field, check boxes, buttons
+   * <input type =”text”>: defines a single-line input field
+
+
+11.        What’s the difference between a class and id?
+* Id is only used to identify one single element 
+* Class is used to identify more than one element
+
+
+12.        How would you include CSS into an HTML document?
+* CSS can be added to an HTML document in 3 ways
+   * Inline: using style attribute inside elements
+   * Internal: using <style> element in <head> section
+   * External: using <link> element to point to an external css file (most common)
+      * <link rel=”stylesheet” href=”styles.css”> inside head section
+
+
+13.        What is a semantic tag?
+* Describes an element to both browser and developer 
+   * <article> 
+   * <header> 
+   * <footer> 
+   * <nav>
+
+
+2. CSS
+1.        What is CSS? what are the different ways of styling an html file?
+* Cascading Style Sheets
+   * how elements are going to be displayed on screen, can control multiple pages at once
+* 3 ways to implement CSS
+   * Internal
+   * External
+   * Interal
+
+
+
+
+2.        Which way has highest priority when styles cascade: inline, internal, and external stylesheets. Which is best practice? Why?
+* Inline has the highest priority, all other styles will be overridden 
+* Internal second highest priority 
+* External have least priority but they are the best practice to use in your webpage. 
+   * Using external ensures that the look of all your pages are consistent
+
+
+3.        What are the different CSS selectors? Write the syntax for each.
+* CSS Selectors are used to find or select HTML elements you want to style 
+* Element Selector
+   * p {  
+    text-align: center;  
+    color: blue;  
+}  
+* All text inside <p> will be blue and center aligned 
+* Class Selector
+   * .intro {
+  text-align: center;
+  color: red;
+}
+   * Applied to any element where class=”intro”
+* Id Selector
+   * #para1 {
+  text-align: center;
+  color: blue;
+}
+   * Applied to any element with id=”para1”
+
+
+3. Spring Core
+1.        What are Spring Projects and Spring Modules?
+* Spring Projects: address different industry concerns
+* Spring Modules: allow different features within spring framework, usually to address a specific concern
+
+
+2.        What is IOC and what does the IOC Container do?
+* Spring Framework acts as an Inversion of Control Container by utilizing Dependency Injection
+   * Dependency Injection: refers to the process whereby objects define the dependencies 
+* IoC: Inversion of Control
+   * Design principle where parts are inverted to achieve loose coupling
+* Spring Container responsible for instantiating our dependencies and providing them to our code (not Maven Dependencies)
+
+
+3.        What is dependency injection and what are some of the benefits of using dependency injection?
+* A design pattern that removes dependencies of a program by providing configuration in an external source 
+* Some benefits
+   * This loosely coupled design that makes code to test, implement in a wide variety of environments 
+   * - removes a clients knowledge of how dependencies are implemented, programs become more reusable, testable, and maintainable
+
+
+4.        What types of dependency injection does Spring support?
+* Strictly two types: Constructor and setter injection
+* Constructor injection
+   * More secure, dependencies are required to create an object
+   * Enables implementation of immutable objects
+* Setter injection
+   * Allows for partial dependencies 
+   * Occur after constructor injection 
+   * Can easily change values 
+   * Resolve circular references
+
+
+5.        What are some differences between BeanFactory and ApplicationContext? Which one eagerly instantiates your beans?
+* BeanFactory 
+   * Most basic version of IOC container
+   * Loads beans on-demand(more lightweight in comparison)
+* ApplicationContext
+   * Extends the features of BeanFactory
+   * Loads all beans at startup
+   * Enhances BeanFactory in a more framework-oriented style
+      * Provides several features that are suitable for enterprise applications
+
+
+6.        What is the Spring Bean lifecycle?
+* Management of beans are conducted by the BeanFactory or Application Context
+   * instantiation , configuration and eventual removal of beans
+   * Instantiate, set properties, bean is made aware of any associated interfaces or classes, all methods are invoked, then the bean is ready for use! 
+   * Once the bean is no longer used, it is marked for removal then destroyed
+
+
+
+
+
+
+7.        What is bean wiring? What about autowiring?
+* Bean Wiring refers to establishing dependencies between Spring beans.
+   * Combining beans together within a Spring container, tell the container how to use dependency injection to tie them together.
+* @Autowired is used to tell Spring container to use autowiring for dependency injection
+   * Provides more fine-grained control over where & how autowiring should be accomplished
+
+
+8.        What are the different ways that Spring can wire beans?
+* @Autowired 
+
+
+9.        What are the scopes of Spring beans? Which is default?
+* Singleton– the default
+   * A single instance per Spring IoC container 
+* Prototype
+   * Can have any number of object instances
+* Web Related 
+   * Request
+      * New bean per HTTP request
+   * Session
+      * New bean per HTTP session
+   * Global
+      * New bean per HTTP Global session
+
+
+10.        What does the @Configuration and @Bean annotations do?
+* @Configuration: indicates a class file used to manage bean configurations 
+* @Bean: plays the same role as the element, you can specify an identifier for these beans with an id or name property
+
+
+11.        List some stereotype annotations. What are the differences between these?
+* Stereotypes are a number of built in annotations which are used as markers to declare objects as a bean, define name & clarify what the bean is used for. 
+* @Component
+   * Declare an object as a bean 
+   * In specific cases, these beans can be used for a specific purpose        
+      * Persistence of data, a service or presentation
+* @Repository  
+   * Makes a class to be used for storing data within a repository or database
+   * Provides benefits for objects that would otherwise be utilized as a DAO
+* @Service
+   * Marks a class as a Service for an Application
+* @Controller
+   * allows for use of mapping annotations
+      * @RequestMapping: quick configurations of web app controller
+      * @ReponseBody: 
+
+
+4. Spring MVC
+1.        Explain the MVC architecture and how HTTP requests are processed in the architecture
+* Request driven structure, designed around a central servlet
+   * Dispatches requests to controllers 
+   * Offers functionality to support the web application
+   * Models: represent the data
+   * View: user interface, displays model data 
+   * Controller: handles requests between model 
+
+
+2.        What is the role of the DispatcherServlet? What about the ViewResolver?
+* DispatcherServlet routes requests to configurable handlers, view resolutions and provides support for uploading files. 
+   * A servlet that inherits functionality from HttpServlet base class
+      * Declared in the web.xml file
+* ViewResolver
+   * view resolvers, which enable you to render models in the browser without tying the implementation to a specific view technology.
+   * The ViewResolver maps view names to actual views.
+3.        How would you declare which HTTP requests you’d like a controller to process?
+* By using the @GetMapping, @PostMapping, @DeleteMapping, and @PutMapping
+
+
+4.        What is the difference between @RequestMapping and @GetMapping?
+* The @RequestMapping annotation is used to map a URL to either an entire class or a particular handler method.
+* GetMapping we can apply only on method level and RequestMapping annotation we can apply on class level and as well as on method level
+
+
+5.        How do you declare the data format your controller expects from requests or will create in responses?
+@RequestMapping(value = "/hello", method = RequestMethod.GET)
+
+
+6.        What annotation would you use to bypass the ViewResolver?
+* @ResponseBody 
+
+
+7.        How would you extract query and path parameters from a request URL in your controller?
+* @RequestParam: maps the query parameter to the corresponding method parameter
+
+
+
+
+
+
+
+
+8.        What concerns is the controller layer supposed to handle vs the service layer?
+        -The controller layer handles the HTTP requests and responses. While the service layer facilitates communication between the controller and repository layer.
+ which 
+
+
+9.        How would you specify HTTP status codes to return from your controller?
+* Using ResponseEntity(HttpStatus.[status])
+
+
+10.        How do you handle exceptions thrown in your code from your controller? What happens if you don’t set up any exception handling?
+* The @ExceptionHandler is an annotation used to handle the specific exceptions and sending the custom responses to the client.
+* You can use the following code to create @ControllerAdvice class to handle the exceptions globally 
+
+
+
+
+11.        What is the difference between @Controller and @RestController?
+* @Controller: create a map of model object and find view
+* @RestController: simply returns the object and object data that is written into HTTP responses
+
+
+
+
+5. Spring Data
+1.        What is JPA?
+        -Java persistence API
+        It is a list of interfaces meant for the mapping/managing of relational data with java objects.
+        -It is not a tool it is a concept.
+        Describes which objects should be persisted and how tools like hibernate implement JPA.
+
+
+2.        What is Spring ORM and Spring Data?
+        ORM is object relational mapping. It converts between incompatible types of objects in JAVA and database tables.
+        Spring Data is a spring project used to address data persistence.
+
+
+3.        What interfaces are available in Spring Data JPA?
+        Spring data JPA is a module within spring data projects. It is built upon spring ORM.
+        Interfaces available in Spring Data JPA interfaces include: Repository, CrudRepository, and JpaRepository which all extend Serializable. (This is not an exhaustive list)
+
+
+
+
+4.        What are the naming conventions for methods in Spring Data repositories?
+https://www.baeldung.com/spring-data-derived-queries
+
+
+
+
+5.        What is @Query used for?
+        It is used to annotate repository interface methods. It supports native SQL and JPQL.
+
+
+6. Spring Boot
+1.        How is Spring Boot different from legacy Spring applications? What does it mean that it is “opinionated”?
+* Spring Boot doesn’t need the boilerplate configurations to set up a Spring application. It’s opinionated meaning that it uses dependencies to simplify the build of the application and its configuration.
+2.        What does “convention over configuration” mean?
+* 3.        What annotation would you use for Spring Boot apps? What does it do behind the scenes?
+* @SpringBootApplication. It enables features for the auto-configuration of a Spring application.
+4.        How does Boot’s autoconfiguration work?
+* It assumes the beans needed for your application, creates them, and wires them together.
+
+
+5.        What is the advantage of having an embedded Tomcat server?
+* It eliminates the process of having to package as .war files and deploy on a web server. It offers an easier way to package Java web applications. Individual applications can be taken offline or restarted without affecting others.
+* https://www.theserverside.com/definition/embedded-Tomcat#:~:text=An%20embedded%20Tomcat%20server%20consists,JAR%2C%20WAR%20or%20ZIP%20file.
+* 6.        What is the significance of the Spring Boot starter POM?
+        The Spring boot starter POM is a convenient set of dependency descriptors that you can include in your application. You can build your spring starter POM conveniently through the Spring website which will package together all that you need to start your spring project.
+
+
+7.        What is the Spring Boot actuator? What information can it give you?
+        It is a sub-project of the spring boot framework. It uses HTTP endpoints to expose operational information about any running application.In essence the actuator brings production-ready features to our application.The actuator gives developers production-grade tools without having to implement the features themselves.
+
+
+8.        What files would you use to configure Spring Boot applications?
+        You would use the yaml or config files.
+9.        What is the benefit of using Spring Boot profiles?
+        -It allows you to easily set the right configurations for certain environments.This way we are able to map our beans to different profiles such as prod, dev and test.
+
+
+7. REST
+1.        What does the acronym REST stand for? What makes a service “RESTful”?
+* Representational State Transfer. It’s an architectural style for providing standards between computer systems on the web and makes it easier for systems to communicate with each other. A service is RESTful when it’s stateless, cacheable, has a uniform interface, client-server, and a layered system.
+2.        What protocols and data format do REST services use?
+* Http protocols. REST services use JSON, XML and a variety of other data formats.
+3.        What are the architectural constraints of REST?
+* Uniform interface - be consistent in naming endpoints. Leverage http protocol for interacting with our api.
+* Client-server - client and server must be able to evolve separately from one another. Client only needs to know URIs to resources exposed by the api
+* Stateless - the server will not store anything about the client’s request. Every request is a new request from the api perspective.
+* Cacheable - resources that will not change should be cached to decrease latency of retrieval of frequently accessed resources.
+* Layered system - different domains of the application are physically and logically separate from each other
+4.        Explain the levels of the Richardson Maturity Model
+* Level 0 - services have a single URI and a single HTTP method
+* Level 1 - services have many URIs but only a single HTTP method
+* Level 2(most popular) - services have many URIs and support several CRUD services
+* Level 3 - makes use of URIs, HTTP, and HATEOAS
+5.        Explain the HATEOAS concept
+* Hypermedia as the single engine of application state. Keeps the REST style architecture unique from other network application architectures.
+6.        What is a “resource” in a REST service?
+* Any information that can be named. Similar to an entity in a database.
+7.        What does the “uniform interface” constraint mean? Give an example of some 
+* RESTful endpoints you would create for an API. Should the URLs contain nouns, verbs, or adjectives?
+8.        How would you implement authentication/authorization in a RESTful web service while maintaining statelessness?
+* You could use tokens to allow access to a specific service or resource without using credentials to authenticate every request so nothing is stored during the authentication request.
+
+
+8. HTTP
+1.        What does HTTP stand for?
+        -Hyper Text Transfer Protocol
+        -transfer protocol to exchange information over the web
+
+
+2.        What are the components inside of an HTTP request? What about an HTTP response?
+        -HTTP requests have a version, verb/method, URL, header, body.
+        -HTTP response have a version, status code, a header, and a body.
+        
+
+
+3.        What are the important HTTP verbs / methods and what do they do?
+                        - GET - retrieval operation
+                        - POST - create operation (like adding data)
+                        - PUT - update operation
+                        - DELETE - delete operation
+
+
+
+
+        1.        Which are idempotent?
+                -GET, PUT, and DELETE are idempotent. Meaning that these methods will have one outcome no matter how many times they are applied in a row.
+        
+        2.        Which are safe?
+                -GET is safe meaning that it doesn’t alter the state of the server and it leads to read-only options.
+
+
+4.        List the levels of HTTP status codes and what they mean
+                                - 100 level - informational
+                                - 200 level - success
+                                - 300 level - redirect
+                                - 400 level - client error
+                                - 500 level server error
+
+
+5.        What are some specific HTTP status codes that are commonly used?
+        -404, 500, 200, 202
+
+
+9. SDLC
+1.        What are the steps in the software development lifecycle?
+        Analysis Phase - Requirements are going to be made
+        Design Phase - Proposed system is designed and product features are planned out
+        Development Phase - Software is built
+        Testing Phase - Software is tested to ensure functionality
+        Deployment/Maintenance Phase - Product is delivered/made available to the customer and clients
+
+
+2.        What is the difference between Waterfall and Agile methodologies? Explain the benefits and drawbacks of each
+        Waterfall is a traditional model which follows a linear/sequential cycle. Each phase must be completed before going to the next phase making it an inflexible methodology. Advantages to Waterfall is well defined steps, works well in small projects, and works well with fleshed out requirements.Some of the drawbacks to Waterfall are the lack of accommodation to customer feedback, a slow process, and inefficient use of resources.
+        Agile is a model based on iterative and incremental development, breaking down the product into small builds with a focus on customer satisfaction. Some of the advantages of this methodology are its adaptability, ability to satisfy customers by involving them in the process, and the reduced risk since potential obstacles can be identified early on. Some of the drawbacks to agile maintaining collaboration, long-term projects can suffer from incremental delivery, and teams can often get sidetracked due to the lack of processes.
+
+
+3.        List some of the principles declared in the Agile manifesto
+                - Individuals and interactions over processes and tools
+                - Working software over comprehensive documentation
+                - Customer collaboration over contract negotiation
+                - Responding to change over following a plan
+
+
+4.        What specific Agile frameworks exist? What are the main features of each?
+        -Scrum: working software over comprehensive documentation, customer collaboration
+        -Kaban: Focus on Flow, continuous flow, visual workflow
+        -Extreme Programming: communication, simplicity, and feedback
+
+
+5.        What is the Scrum process? Explain each of the Scrum ceremonies
+        Meeting with Devs, Quality Analyst, and Business Analyst, documenting backlogs and burnout charts, as well as sprints. Sprint planning is meeting to plan the work to be done during a sprint which usually lasts about 2 hours per week. Daily Scrum are the daily meetings for the dev team to check on progress made. Sprint reviews are where a demo of the working product is presented and collaboration between stakeholders and scrum team decide if changes need to be made. Sprint retrospective is where the scrum team reviews how the sprint went and create a plan to improve the next sprint.
+
+
+6.        How long is a typical sprint? A typical sprint last about two weeks, about 2 hours per week.
+
+
+7.        What is a “standup” and what should you report about your work?
+        A standup is the daily meeting for reviewing the progress made on the project. They typically go in the format of What did you do yesterday?, What are you doing today?, and blockers(things out of devs control).
+
+
+8.        What is the role of a “Scrum master” in a project? What about the “Product owner”?
+        Scrum Masters are responsible for clarifying questions, organizing scrum activities and act as an overall facilitator to the scrum team.
+        Product Owners are responsible for the product resulting from the dev team and managing product backlogs.
+
+
+9.        Explain the following metrics/charts: sprint velocity, burndown chart
+        Sprint Velocity is the metric of looking at the amount of work your team completed in previous sprints and determining how much work in the future can be made in future sprints.
+        A burndown chart is a visual representation of work left to do versus time.
+
+
+10.        What is a Scrum board?
+        A tool used to visually represent the progress of the Scrum sprint. They usually consist of three columns, “To Do”, “In Progress”, and “Done”.
+
+
+10. SRE
+1.        What is SRE?
+        -It is a role and a theoretical approach.
+        -role: Site Reliability Engineer
+-approach: approach to operations which uses software as the primary tool for managing systems or improving the system (automation)
+
+
+2.        What is toil?
+        -Refers to mundane and repetitive tasks that could be automated because it follows a strict pattern.
+        -toil can scale with the system
+        -Strategic time can and should be dedicated to reducing/automating toil.
+        -It is good to do a cost benefit analysis to determine if automating the toil is worth it
+        -It is also good to keep a toil reduction backlog.
+
+
+3.        What are the responsibilities of an SRE?
+        -SREs are responsible for: Eliminating toil, working to service levels, and managing failure.
+
+
+4.        Define SLA, SLO, SLI.
+        -SLA, SLO, and SLI are the service levels.
+        -SLA: Service Level Agreement. It is the target up time for a service that you enter into contract with someone that uses that service. If an agreement is breached then the SRE determines how it should be handled.
+
+
+        -SLO: Service Level Objectives. It is the target goal/objective for the uptime of a service. Service health is defined in terms of multiple SLOs. This service level is more user focused and based on user experience.These goals have to be actually achievable. The stakeholders, product owner, devs, and SRE team work together to agree on SLO.
+
+
+        -SLI:Service Level Indicators.On going measure of system to make sure that an SLO is met. It has to be measurable. The availability/success rate is determined by the equation: (all status code besides 500 that occur) / the number of requests made. This equation is used over the service level period, which in general is 28 days.
+
+
+5.        How does SRE differ from the traditional development/operation split?
+        -DevOps reviews the entire life cycle of the project from the production stage to integration. SREs, on the other hand, limit themselves to nuances of production. 
+        -DevOps focuses on team synthesis, eliminating barriers, for cultural change above all else. SREs, on the other hand, obsess on standards and metrics. 
+        -DevOps is on product development and delivery. SREs zone in on the system. Is the system running? Is it readily available? 
+        -The DevOps team spans anyone involved in the life cycle of that product—product owners, devs, testers, operators, and so forth. SREs, in contrast, are engineers who exclusively write code.

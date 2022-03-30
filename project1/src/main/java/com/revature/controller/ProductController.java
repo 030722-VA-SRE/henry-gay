@@ -15,12 +15,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.common.ApiResponse;
 import com.revature.dto.ProductDto;
 import com.revature.model.Category;
+import com.revature.model.Product;
 import com.revature.repository.CategoryRepository;
+import com.revature.repository.ProductRepository;
 import com.revature.service.ProductService;
 
 @RestController
@@ -32,8 +35,11 @@ public class ProductController {
 	@Autowired
 	CategoryRepository categoryRepository;
 	
+	@Autowired
+	ProductRepository productRepository;
 	
-	@PostMapping("/add")
+	
+	@PostMapping("/create")
 	public ResponseEntity<ApiResponse> createProduct(@RequestBody ProductDto productDto) {
 		Optional<Category> optionalCategory = categoryRepository.findById(productDto.getCategoryId());
 		if(!optionalCategory.isPresent()) {
@@ -43,10 +49,22 @@ public class ProductController {
 		return new ResponseEntity<>(new ApiResponse(true, "Product has been added"), HttpStatus.CREATED);
 	}
 	
-	@GetMapping("/")
+	@GetMapping("/list")
 	public ResponseEntity<List<ProductDto>> getProducts() {
 		List<ProductDto> products = productService.getAllProducts();
 		return new ResponseEntity<>(products, HttpStatus.OK);
+	}
+	
+	@GetMapping("/list/name")
+	public ResponseEntity<List<Product>> getProductByName(@RequestParam String name) {
+		List<Product> productByName = productRepository.findByName(name);
+		return new ResponseEntity<>(productByName, HttpStatus.OK);
+	}
+	
+	@GetMapping("/list/price")
+	public ResponseEntity<List<Product>> getProductByPrice(@RequestParam double price) {
+		List<Product> productByPrice = productRepository.findByPrice(price);
+		return new ResponseEntity<>(productByPrice, HttpStatus.OK);
 	}
 	
 	@PutMapping("/update/{productId}")
