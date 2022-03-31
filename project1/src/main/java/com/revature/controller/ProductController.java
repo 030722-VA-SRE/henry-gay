@@ -5,7 +5,11 @@ package com.revature.controller;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,6 +42,8 @@ public class ProductController {
 	@Autowired
 	ProductRepository productRepository;
 	
+	private static final Logger LOG = LoggerFactory.getLogger(ProductController.class);
+	
 	
 	@PostMapping("/create")
 	public ResponseEntity<ApiResponse> createProduct(@RequestBody ProductDto productDto) {
@@ -51,17 +57,20 @@ public class ProductController {
 	
 	@GetMapping("/list")
 	public ResponseEntity<List<ProductDto>> getProducts() {
+		MDC.put("requestId", UUID.randomUUID().toString());
 		List<ProductDto> products = productService.getAllProducts();
+		LOG.info("Products retrieved");
 		return new ResponseEntity<>(products, HttpStatus.OK);
+		
 	}
 	
-	@GetMapping("/list/name")
+	@GetMapping("/list/{name}")
 	public ResponseEntity<List<Product>> getProductByName(@RequestParam String name) {
 		List<Product> productByName = productRepository.findByName(name);
 		return new ResponseEntity<>(productByName, HttpStatus.OK);
 	}
 	
-	@GetMapping("/list/price")
+	@GetMapping("/list/{price}")
 	public ResponseEntity<List<Product>> getProductByPrice(@RequestParam double price) {
 		List<Product> productByPrice = productRepository.findByPrice(price);
 		return new ResponseEntity<>(productByPrice, HttpStatus.OK);
