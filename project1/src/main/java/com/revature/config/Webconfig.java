@@ -1,8 +1,8 @@
 /*-
- * https://spring.io/blog/2015/06/08/cors-support-in-spring-framework
- * https://spring.io/guides/gs/rest-service-cors/#global-cors-configuration
- */
-
+// * https://spring.io/blog/2015/06/08/cors-support-in-spring-framework
+// * https://spring.io/guides/gs/rest-service-cors/#global-cors-configuration
+// */
+//
 package com.revature.config;
 
 import org.springframework.context.annotation.Bean;
