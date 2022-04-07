@@ -6,6 +6,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.revature.model.AppUser;
 import com.revature.model.Role;
@@ -13,10 +15,15 @@ import com.revature.service.AppUserService;
 
 
 @SpringBootApplication
-public class EnoScioEcommerceApplication {
+public class Project1Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(EnoScioEcommerceApplication.class, args);
+		SpringApplication.run(Project1Application.class, args);
+	}
+	
+	@Bean
+	PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
 	}
 	
 	@Bean

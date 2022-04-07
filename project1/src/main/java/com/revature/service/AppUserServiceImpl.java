@@ -1,9 +1,16 @@
 package com.revature.service;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,18 +20,33 @@ import com.revature.repository.RoleRepository;
 import com.revature.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 @Service @RequiredArgsConstructor @Transactional 
-public class AppUserServiceImpl implements AppUserService {
+public class AppUserServiceImpl implements AppUserService, UserDetailsService {
 
 	private final UserRepository userRepository;
 	private final RoleRepository roleRepository;
-	private static final Logger Log = LoggerFactory.getLogger(AppUserService.class);
+	private static final Logger Log = LoggerFactory.getLogger(AppUserServiceImpl.class);
+	private final PasswordEncoder passwordEncoder;
+	
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		AppUser appUser = userRepository.findByUsername(username);
+		if(appUser == null) {
+			Log.error("User not found in the database");
+			throw new UsernameNotFoundException("User not found in the database");
+		} else {
+			Log.info("User found in the database: {}", username);
+		}
+		Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
+		appUser.getRoles().forEach(role -> authorities.add(new SimpleGrantedAuthority(role.getName())));
+		return new org.springframework.security.core.userdetails.User(appUser.getUsername(), appUser.getPassword(), authorities);
+	}
 	
 	@Override
 	public AppUser saveUser(AppUser appuser) {
 		Log.info("Saving new user {} to the database", appuser.getName());
+		appuser.setPassword(passwordEncoder.encode(appuser.getPassword()));
 		return userRepository.save(appuser);
 	}
 
@@ -53,5 +75,4 @@ public class AppUserServiceImpl implements AppUserService {
 		Log.info("Fetching all users");
 		return userRepository.findAll();
 	}
-
 }
