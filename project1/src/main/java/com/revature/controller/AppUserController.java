@@ -98,7 +98,6 @@ public class AppUserController {
 			} catch (Exception exception) {
 				response.setHeader("error", exception.getMessage());
 				response.setStatus(FORBIDDEN.value());
-//				response.sendError(FORBIDDEN.value());
 				//Get error message
 				Map<String, String> error = new HashMap<>();
 				//send error message

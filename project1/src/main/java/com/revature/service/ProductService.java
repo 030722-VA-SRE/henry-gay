@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.revature.dto.ProductDto;
@@ -41,13 +40,13 @@ public class ProductService {
 
 	public List<ProductDto> getAllProducts() {
 		List<Product> allProducts = productRepository.findAll();
-		
 	 	List<ProductDto> productDtos = new ArrayList<>();
 		for(Product product:allProducts) {
 			productDtos.add(getProductDto(product));
 		}
 		return productDtos;
 	}
+	
 	public void updateProduct(ProductDto productDto, Integer productId) throws Exception {
 		Optional<Product> optionalProduct = productRepository.findById(productId);
 		if(!optionalProduct.isPresent()) {

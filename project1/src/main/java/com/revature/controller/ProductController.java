@@ -3,6 +3,7 @@
  */
 package com.revature.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -33,6 +34,9 @@ import com.revature.service.ProductService;
 @RestController
 @RequestMapping("/product")
 public class ProductController {
+	
+	private ProductService ps;
+	
 	@Autowired
 	ProductService productService;
 	
@@ -64,11 +68,11 @@ public class ProductController {
 		
 	}
 	
-	@GetMapping("/list/{name}")
-	public ResponseEntity<List<Product>> getProductByName(@RequestParam String name) {
-		List<Product> productByName = productRepository.findByName(name);
-		return new ResponseEntity<>(productByName, HttpStatus.OK);
-	}
+//	@GetMapping("/list/{name}")
+//	public ResponseEntity<List<Product>> getProductByName(@RequestParam String name) {
+//		List<Product> productByName = productRepository.findByName(name);
+//		return new ResponseEntity<>(productByName, HttpStatus.OK);
+//	}
 	
 	@GetMapping("/list/{price}")
 	public ResponseEntity<List<Product>> getProductByPrice(@RequestParam double price) {
