@@ -1,13 +1,6 @@
 global:
   scrape_interval:     15s
 
-altering:
-  altertmanagers:
-    - static_configs:
-      - targets:
-        - alertmanager:9093
-        #alert manager
-
 rule_files:
   - rules.yml
     
